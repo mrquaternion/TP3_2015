@@ -1,4 +1,3 @@
-package java;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -19,13 +18,13 @@ class Tp3 {
     static void lectureFichier(String in) {
         Carte carte = new Carte();
 
-        try (BufferedReader br = new BufferedReader(new FileReader("../inputs/" + in))) {
+        try (BufferedReader br = new BufferedReader(new FileReader("./inputs/" + in))) {
             String ligne;
             boolean debut = true;
 
             while ((ligne = br.readLine()) != null) {
                 if (debut) { // début de fichier?
-                    if (ligne.contains("---")) { // oui mais désormais près à passer à la lecture des rues
+                    if (ligne.contains("---")) { // oui mais désormais prêt à passer à la lecture des rues
                         debut = false;
                         continue;
                     } else { // oui
