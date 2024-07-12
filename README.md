@@ -15,5 +15,5 @@ javac -d bin @sources.txt
 Pour lancer le programme en ligne de commande, utilisez la commande suivante :
 
 ```sh
-java -cp bin Tp2 <fichier_entrée> <fichier_sortie>
+java -cp bin Tp3 <fichier_entrée> <fichier_sortie>
 ```
