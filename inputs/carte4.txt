@@ -14,7 +14,7 @@ rue1 : a c 3 ;
 rue2 : a b 9 ;
 rue3 : b c 9 ;
 rue3 : b f 8 ;
-rue3 : b j 18;
+rue3 : b j 18 ;
 rue4 : c e 4 ;
 rue4 : c d 2 ;
 rue4 : c f 9 ;

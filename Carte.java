@@ -6,7 +6,7 @@ import java.util.Comparator;
 public class Carte {
     private List<String> sites;
     private List<Arete> aretes;
-    private List<Arete> arbreRecouvrement;
+    private List<Arete> ARM;
 
     public class Arete {
         String nomRue;
@@ -30,7 +30,7 @@ public class Carte {
     Carte() {
         sites = new ArrayList<>();
         aretes = new ArrayList<>();
-        arbreRecouvrement = new ArrayList<>();
+        ARM = new ArrayList<>();
     }
 
     void ajouterSite(String site) {
@@ -54,27 +54,24 @@ public class Carte {
     }
 
     public int Kruskal() {
-        // Step 1: Sort all edges in non-decreasing order of their weight
         Collections.sort(aretes, Comparator.comparingInt(a -> a.cout));
 
-        // Step 2: Create disjoint sets for each site
         EnsembleDisjoint ed = new EnsembleDisjoint(sites.size());
 
-        int coutARM = 0;
+        int coutMin = 0;
 
-        // Step 3: Process each edge
         for (Arete arete : aretes) {
             int site1Index = sites.indexOf(arete.site1);
             int site2Index = sites.indexOf(arete.site2);
 
             if (ed.find(site1Index) != ed.find(site2Index)) {
                 ed.union(site1Index, site2Index);
-                coutARM += arete.cout;
-                arbreRecouvrement.add(arete);
+                coutMin += arete.cout;
+                ARM.add(arete);
             }
         }
 
-        return coutARM;
+        return coutMin;
     }
 
     public List<String> getSites() {
@@ -82,26 +79,28 @@ public class Carte {
     }
 
     public List<String> getAretes() {
-        List<String> aretesStr = new ArrayList<>();
-
         trierAretes();
 
-        for (Arete arete : arbreRecouvrement) {
-            aretesStr.add(arete.toString());
+        List<String> ARMString = new ArrayList<>();
+
+        for (Arete arete : ARM) {
+            ARMString.add(arete.toString());
         }
 
-        return aretesStr;
+        return ARMString;
     }
 
-    public void trierAretes() {
-        Collections.sort(arbreRecouvrement, new Comparator<Arete>() {
+    private void trierAretes() {
+        Collections.sort(ARM, new Comparator<Arete>() {
             @Override
             public int compare(Arete a1, Arete a2) {
-                int cmp = a1.site1.compareTo(a2.site1);
-                if (cmp == 0) {
-                    cmp = a1.site2.compareTo(a2.site2);
+                int val = a1.site1.compareTo(a2.site1);
+
+                if (val == 0) {
+                    val = a1.site2.compareTo(a2.site2);
                 }
-                return cmp;
+
+                return val;
             }
         });
     }
