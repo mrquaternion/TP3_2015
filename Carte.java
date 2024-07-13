@@ -53,6 +53,11 @@ public class Carte {
         return new Arete(nomRue, site1, site2, cout);
     }
 
+    /**
+     * Implémente l'algorithme de Kruskal pour trouver l'ARM d'un graphe
+     * 
+     * @return la valeur totale du coût minimum pour connecter tous les sites du graphe
+     */
     public int Kruskal() {
         Collections.sort(aretes, Comparator.comparingInt(a -> a.cout));
 
@@ -75,11 +80,13 @@ public class Carte {
     }
 
     public List<String> getSites() {
+        Collections.sort(sites); // ordre croissant alphanumérique
+
         return sites;
     }
 
-    public List<String> getAretes() {
-        trierAretes();
+    public List<String> getARM() {
+        trierAretes(); // ordre croissant alphanumérique des sites des rues
 
         List<String> ARMString = new ArrayList<>();
 
@@ -90,6 +97,9 @@ public class Carte {
         return ARMString;
     }
 
+    /**
+     * Trie les arêtes de l'ARM par ordre alphabétique croissant des sites de départ et de destination
+     */
     private void trierAretes() {
         Collections.sort(ARM, new Comparator<Arete>() {
             @Override

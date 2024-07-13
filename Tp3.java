@@ -10,11 +10,11 @@ class Tp3 {
         lectureFichier(fichierInput, carte);
         int coutMin = carte.Kruskal();
         ecritureFichier(fichierOutput, carte, coutMin);
-
     }
 
     /**
-     * Lecture d'un fichier entrant passé en argument avec {@code BufferedReader} et {@code FileReader}
+     * Lecture d'un fichier entrant passé en argument avec {@code BufferedReader} et {@code FileReader} et traitement du contenu
+     * 
      * @param in fichier en cours de lecture
      * @param carte graphe des installations
      */
@@ -40,18 +40,26 @@ class Tp3 {
         }
     }
 
+    /**
+     * Écrit les données des sites et l'ARM d'un objet Carte dans un fichier de sortie spécifié,
+     * suivi d'une valeur de coût minimum
+     *
+     * @param out le nom du fichier de sortie
+     * @param carte l'objet Carte contenant les données des sites et ARM
+     * @param coutMin la valeur du coût minimum à écrire à la fin du fichier
+     */
     static void ecritureFichier(String out, Carte carte, int coutMin) {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter("./outputs/" + out))) {
             List<String> sites = carte.getSites();
             
-
             for (String site : sites) {
                 bw.write(site);
                 bw.newLine();
             }
 
-            List<String> aretes = carte.getAretes();
-            for (String arete : aretes) {
+            List<String> ARM = carte.getARM();
+
+            for (String arete : ARM) {
                 bw.write(arete);
                 bw.newLine();
             }
