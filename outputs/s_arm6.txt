@@ -31,7 +31,7 @@ rue1 s3 s14 3
 rue15 s4 s17 4
 rue10 s6 s4 4
 rue0 s7 s13 7
-rue3 s7 s6 5 x
+rue3 s7 s6 5
 rue4 s8 s10 2
 ---
 65
